@@ -1,0 +1,9 @@
+{% extends '../base.html' %}
+
+{% block body %}
+{% if request.user.user.is_pharmacist %}
+    {% include './pharmacy_dashboard.html' %}
+{% else %}
+    {% include './consumer_dashboard.html' %}
+{% endif %}
+{% endblock %}

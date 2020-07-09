@@ -1,0 +1,1 @@
+web: gunicorn gpharma.wsgi:application --log-file -

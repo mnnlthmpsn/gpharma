@@ -1,0 +1,46 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block body %}
+<nav class="navbar navbar-expand-md bg-white navbar-light shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'img/gpharmlogo.png' %}" alt="sujoni" width="30" height="30" class="img-fluid">
+            GeoPharma</a>
+        <!-- toggle icon -->
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- toggle icon -->
+
+        <!-- nav items -->
+        <div class="collapse navbar-collapse" id="mainNav">
+            <div class="navbar-nav nav-fill w-100 ">
+                <div class="navbar-nav w-100 m-auto justify-content-end">
+                    <a class="nav-item nav-link text-center" href="{% url 'index' %}">Home</a>
+                    <a class="nav-item nav-link text-center" href="#">About GeoPharma</a>
+                    <a class="nav-item nav-link text-center" href="#">Health Tips</a>
+                    <a class="nav-item nav-link text-center" href="#">Drugs Dictionary</a>
+                    <a class="nav-item nav-link text-center" href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section id="welcome" class="welcome">
+    <div class="container ">
+        <div class="row justify-content-center w-50 mx-auto py-5">
+            <h1 class="myText display-4 text-center text-white pt-5">
+                GHANA'S PREMIUM PHARMACY LOCATOR
+            </h1>
+        </div>
+        <hr class="w-25 pb-3" style="border-top: 1px solid #ffc200;">
+        <div class="row justify-content-center">
+            <h6 class="text-center py-2 text-white">I want to use GeoPharma as a</h6>
+        </div>
+        <div class="row justify-content-center align-items-center py-4 ">
+            <a href="{% url 'accounts:consumer_registration' %}"><button class="btn amber mx-3">Consumer</button></a>
+            <a href="{% url 'accounts:pharmacy_registration' %}"><button class="btn amber my-2">Pharmacy</button></a>
+        </div>
+    </div>
+</section>
+{% endblock %}

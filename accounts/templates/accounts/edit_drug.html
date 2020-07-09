@@ -1,0 +1,45 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block body %}
+<nav class="navbar navbar-expand-md bg-white navbar-light shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'img/gpharmlogo.png' %}" alt="sujoni" width="30" height="30" class="img-fluid">
+            GeoPharma</a>
+        <!-- toggle icon -->
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- toggle icon -->
+
+        <!-- nav items -->
+        <div class="collapse navbar-collapse" id="mainNav">
+            <div class="navbar-nav nav-fill w-100 ">
+                <div class="navbar-nav justify-content-end">
+                    <a class="nav-item nav-link text-center" href="{% url 'index' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h6 class="text-center pt-3">Add Drug</h6>
+    <hr class="w-25">
+    <form action="{% url 'accounts:edit_drug' drug.id %}" method="POST">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{ drug.name }}">
+                </div>
+                <div class="form-group">
+                    <label for="Quantity">Quantity</label>
+                    <input type="number" class="form-control" name="quantity" id="quantity" value="{{ drug.quantity }}">
+                </div>
+                <button type="submit" class="btn amber">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
