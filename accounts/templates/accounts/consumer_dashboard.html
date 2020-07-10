@@ -1,34 +1,55 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-       }
-    </style>
-  </head>
-  <body>
-    <h3>My Google Maps Demo</h3>
-    <!--The div element for the map -->
-    <div class="container">
-        <div id="map"></div>
+{% extends '../base.html' %}
+{% load static %}
+{% block body %}
+<nav class="navbar navbar-expand-md bg-white navbar-light shadow-sm fixed-top mb-5">
+  <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'img/gpharmlogo.png' %}" alt="sujoni" width="30" height="30" class="img-fluid">
+          GeoPharma</a>
+      <!-- toggle icon -->
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- toggle icon -->
+
+      <!-- nav items -->
+      <div class="collapse navbar-collapse" id="mainNav">
+        <div class="navbar-nav nav-fill w-100 ">
+            <div class="navbar-nav w-100 m-auto justify-content-end">
+                <a class="nav-item nav-link text-center" href="{% url 'index' %}">Logout</a>
+            </div>
+        </div>
     </div>
-    <script>
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  var uluru = {lat: -25.344, lng: 131.036};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 4, center: uluru});
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: uluru, map: map});
-}
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-    </script>
-  </body>
-</html>
+  </div>
+</nav>
+
+<div class="container mt-5 pt-3">
+    <form action="{% url 'dashboard' %}" action="GET" class="mb-2">
+      <div class="row justify-content-center">
+        <div class="d-flex col-md-6">
+          <input type="text" class="form-control" name="searchItem" placeholder="Search Drug">
+          <input type="submit" class="btn btn-success mx-1">
+        </div>
+      </div>
+    </form>
+  <div id="map"></div>
+  <h3 class="text-center pt-3">Pharmacies with Drug</h3>
+  <p class="text-center">
+    {% if items %}
+    {% for item in items %}
+      {% for pharmacy in item.pharmacy.all %}
+        <a href="#" onclick="getpharmloc('5.8142835999999996', '0.0746767')">{{ pharmacy }}</a>
+      {% endfor %}
+    {% endfor %}
+  {% else %}
+  <p class="text-center">Search a drug</p>
+  {% endif %}
+  </p>
+  <!-- action for pharmacy -->
+</div>
+
+<script src="{% static 'js/consumer.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxb7n2gUeIyOVeLmLYhUILYUtbn7C4_2o&callback=initMap">
+</script>
+{% endblock %}

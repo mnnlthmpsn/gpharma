@@ -97,12 +97,23 @@ def authLogin(request):
 
 def dashboard(request):
     pharma_drugs = []
+    items = []
+    pharmacies = Pharmacy.objects.all()
+    searchItem = request.GET.get('searchItem', '')
+
+    if len(searchItem) > 0:
+        items = Drug.objects.filter(name__icontains=searchItem)  
+        print(items)
+
     if request.user.user.is_pharmacist:
         pharmacy = Pharmacy.objects.get(admin=request.user)
         pharma_drugs = pharmacy.drug_set.all()
+
     return render(request, 'accounts/dashboard.html', {
         'drugs': pharma_drugs,
-    })
+        'pharmacies': pharmacies,
+        'items': items,
+        })
 
 def add_drug(request):
     if request.method == 'POST':
