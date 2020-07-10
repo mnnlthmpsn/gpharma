@@ -1,7 +1,7 @@
 {% extends '../base.html' %}
 {% load static %}
 {% block body %}
-<nav class="navbar navbar-expand-md bg-white navbar-light shadow-sm fixed-top">
+<nav class="navbar navbar-expand-md bg-white navbar-light shadow-sm fixed-top mb-5">
     <div class="container">
         <a class="navbar-brand" href="{% url 'index' %}">
             <img src="{% static 'img/gpharmlogo.png' %}" alt="sujoni" width="30" height="30" class="img-fluid">
@@ -22,7 +22,7 @@
       </div>
     </div>
 </nav>
-<div class="container mt-5">
+<div class="container">
     <h2 class="text-center pt-3 text-muted">Pharmacy Dashboard</h2>
     <div class="container row justify-content-end">
         <a href="{% url 'accounts:add_drug' %}">
