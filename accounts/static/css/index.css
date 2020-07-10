@@ -43,6 +43,7 @@ body {
 
 section {
   background-image: url('/static/img/banner-01.jpg');
+  background-color: rgb(117, 70, 48);
   background-repeat: no-repeat;
   background-size: cover;
   height: 105vh;
