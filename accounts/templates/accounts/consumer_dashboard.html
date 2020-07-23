@@ -38,7 +38,7 @@
     {% if items %}
     {% for item in items %}
       {% for pharmacy in item.pharmacy.all %}
-        <a href="#" onclick="getpharmloc('5.8142835999999996', '0.0746767')">{{ pharmacy }}</a>
+        <a href="#" onclick="getpharmloc('{{pharmacy.loc_lat}}', '{{pharmacy.loc_long}}')">{{ pharmacy }}</a>
       {% endfor %}
     {% endfor %}
   {% else %}
